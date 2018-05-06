@@ -5,15 +5,20 @@ class OnlineStreams extends React.Component {
   render() {
     return (
     	<div>
-      	<h1>OnlineStreams Is Here!</h1>
+      	<h1>OnlineStreams Are Here!</h1>
     		  <ul>
             {
               Object
-              .keys(this.props.channels)
-              .map(key => <StreamInfo 
-                key={key}
-                index={key}
-                details={this.props.channels[key]} />)
+              .keys(this.props.liveChannels)
+              .map(key => 
+              	<li>
+              		<StreamInfo
+                		key={key}
+                		index={key}
+                		details={this.props.liveChannels[key]} 
+                	/>
+                </li>
+            	)
             }
           </ul>
     	</div>

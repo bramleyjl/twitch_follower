@@ -1,16 +1,25 @@
 import React from 'react';
+import moment from 'moment';
 
 class StreamInfo extends React.Component {
   render() {
 
-  	const {index, details} = this.props;
-    
+  	const {details} = this.props;
+  	let startTime = details.created_at.replace(/[A-z]/,'')
+  	startTime = moment(startTime, 'YYYY-MM-DDHH:mm:SS');
+  	let now =  moment();
+  	var duration = moment.duration(startTime.diff(now)).humanize();
+  	console.log(duration)
+
     return (
     	<div>
-    		<p>{index}</p>
-    		<p>{details.name}</p>
-    		<p>{details.channelLink}</p>
-    		<p>{details.streamLink}</p>
+	    	<ul>
+					<a href={details.channel.url}><li>{details.channel.display_name}</li></a>
+					<li>{details.game}</li>
+					<li>{details.channel.status}</li>
+					<li>Online for {duration}</li>
+					<img src={details.preview.medium} alt={details.channel.display_name} />
+    		</ul>
     	</div>
     )
   }
