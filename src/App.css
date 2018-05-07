@@ -1,46 +1,74 @@
+@font-face {
+    font-family: twitch-shadow;
+    src: url("https://cdn.rawgit.com/nawazishali/portfolio-version-two/05ba8748/fonts/dimitry.TTF");
+}
+
+body {
+  background-image: url('./twitch-logo.png');
+  background-size: 8px 8px;
+  background-repeat: repeat;
+}
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 60px;
-}
-
-.App-header {
-  height: 150px;
-  padding: 20px;
-  color: #6441a4;
-  font-family: 'Press Start 2P', cursive;
-}
-
 .App-title {
   font-size: 3em;
+  font-family: twitch-shadow;
+  color: white;
 }
 
-.App-intro {
-  font-size: large;
+.App-subtitle {
+  font-family: twitch-shadow;
+  color: white;
+  padding-right: 20px;
 }
 
-.liveContainer {
-  border-color: #6441a4;
-  border-style: solid;
-  display: flex;
+
+.live-stream {
+  color: green;
+  font-family: 'Press Start 2P';
 }
 
-.live-title {
-  font-family: 'Press Start 2P', cursive;  
+.offline-stream {
+  color: red;
+  font-family: 'Press Start 2P';
 }
 
-.offlineContainer {
-  border-color: #6441a4;
-  border-style: solid;
-  display: flex;
+.card {
+  width: 23rem;
+  background: rgba(255, 255, 255, .8);
+  margin: 5px;
+  border-color: black;
+  border-style: solid;  
 }
 
-.offlineStreamPic img {
-  max-height: 200px;
+.card-title {
+  margin: 10px;
 }
 
-.offline-title {
-  font-family: 'Press Start 2P', cursive;  
+.card:hover {
+  background: rgba(255, 255, 255, 1);
+}
+
+.img-fluid {
+  max-width: 320px;
+  max-height: 180px;
+}
+
+.status-title {
+  font-family: 'twitch-shadow';
+  color: white;  
+}
+
+#primary-nav {
+  background: #9C57C4;
+  margin-bottom: 10px;
+}
+
+.navbar-nav{
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
 }

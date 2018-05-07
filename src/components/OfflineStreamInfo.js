@@ -5,23 +5,16 @@ class OfflineStreamInfo extends React.Component {
   render() {
 
     const {details} = this.props;
-    let startTime = details.created_at.replace(/[A-z]/,'')
-  	startTime = moment(startTime, 'YYYY-MM-DDHH:mm:SS');
-  	let now =  moment();
-  	var duration = moment.duration(startTime.diff(now)).humanize();
 
     return (
-      <div class="offlineContainer" id={this.props.index}>
-        <span class="streamInfo">
-          <h3>{details.display_name}:</h3>
-          <h5>{details.game}</h5>
-          <p>{details.status}</p>
-        </span>
-        <span class="offlineStreamPic">
+      <div class="card" id={this.props.index}>
+        <div class="card-body">
           <a href={details.url}>
-            <img src={details.logo} alt={details.display_name} />
+            <img src={details.video_banner} class="mx-auto rounded img-fluid" alt={this.props.index} />
           </a>
-        </span>
+          <h5 class="card-title offline-stream">{details.display_name}</h5>
+          <p class="card-text">{details.status}</p>
+        </div>
       </div>
     )
   }

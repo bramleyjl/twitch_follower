@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from '../twitch_logo.svg';
 import '../App.css';
 import axios from 'axios';
 
@@ -49,12 +48,20 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 class="App-title">Follower</h1>
-        </header>
-        <OnlineStreams liveChannels={this.state.liveChannels} />
-        <OfflineStreams offlineChannels={this.state.offlineChannels} />
+        <nav id="primary-nav" class="navbar navbar-default sticky-top">
+          <div class="navbar-nav navbar-left">
+            <h1 class="App-title">Twitch Follower</h1>
+          </div>
+          <div class="navbar-nav navbar-right">
+              <h4 class="App-subtitle">All</h4>
+              <h4 class="App-subtitle">Live</h4>
+              <h4 class="App-subtitle">Offline</h4>
+          </div>
+        </nav>
+        <div class="container">
+          <OnlineStreams liveChannels={this.state.liveChannels} />
+          <OfflineStreams offlineChannels={this.state.offlineChannels} />
+        </div>
       </div>
     );
   }

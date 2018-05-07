@@ -4,8 +4,7 @@ import LiveStreamInfo from './LiveStreamInfo'
 class OnlineStreams extends React.Component {
   render() {
     return (
-    	<div class="liveWrapper">
-      	<h2 class="live-title">Live Streams</h2>
+    	<div class="row justify-content-center liveWrapper">
             {
               Object
               .keys(this.props.liveChannels)

@@ -22,5 +22,9 @@ module.exports = {
   channel6: {
     name: 'followgrubby',
     streamLink: 'https://api.twitch.tv/kraken/streams/followgrubby'
+  },
+  channel7: {
+    name: 'imaqtpie',
+    streamLink: 'https://api.twitch.tv/kraken/streams/imaqtpie'
   }
 }

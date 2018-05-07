@@ -1,7 +1,7 @@
 {
   "apps" : [
     {
-      "name"      : "your-app",
+      "name"      : "twitchfollower",
       "script"    : "npx",
       "interpreter": "none",
       "args": "serve build"
