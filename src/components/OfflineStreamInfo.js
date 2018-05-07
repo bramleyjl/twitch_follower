@@ -11,13 +11,17 @@ class OfflineStreamInfo extends React.Component {
   	var duration = moment.duration(startTime.diff(now)).humanize();
 
     return (
-      <div id={this.props.index}>
-        <ul>
-          <a href={details.url}><li>{details.display_name}</li></a>
-          <li>{details.game}</li>
-          <li>{details.status}</li>
-          <img src={details.logo} alt={details.display_name} />
-        </ul>
+      <div class="offlineContainer" id={this.props.index}>
+        <span class="streamInfo">
+          <h3>{details.display_name}:</h3>
+          <h5>{details.game}</h5>
+          <p>{details.status}</p>
+        </span>
+        <span class="offlineStreamPic">
+          <a href={details.url}>
+            <img src={details.logo} alt={details.display_name} />
+          </a>
+        </span>
       </div>
     )
   }

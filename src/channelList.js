@@ -18,5 +18,9 @@ module.exports = {
   channel5: {
     name: 'backtowarcraft',
     streamLink: 'https://api.twitch.tv/kraken/streams/back2warcraft'
+  },
+  channel6: {
+    name: 'followgrubby',
+    streamLink: 'https://api.twitch.tv/kraken/streams/followgrubby'
   }
 }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from '../logo.svg';
+import logo from '../twitch_logo.svg';
 import '../App.css';
 import axios from 'axios';
 
@@ -51,7 +51,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Twitch Follower</h1>
+          <h1 class="App-title">Follower</h1>
         </header>
         <OnlineStreams liveChannels={this.state.liveChannels} />
         <OfflineStreams offlineChannels={this.state.offlineChannels} />

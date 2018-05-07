@@ -4,23 +4,19 @@ import OfflineStreamInfo from './OfflineStreamInfo'
 class OfflineStreams extends React.Component {
   render() {
     return (
-    	<div>
-      	<h1>OfflineStreams Are Here!</h1>
-            <ul>
+    	<div class="offlineWrapper">
+      	<h2 class="offline-title">Offline Streams</h2>
             {
               Object
               .keys(this.props.offlineChannels)
               .map(key => 
-                <li>
                   <OfflineStreamInfo
                     key={key}
                     index={key}
                     details={this.props.offlineChannels[key]}
                   />
-                </li>
               )
             }
-          </ul>
     	</div>
     )
   }
