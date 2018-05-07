@@ -1,19 +1,24 @@
 import React from 'react';
-import StreamInfo from './StreamInfo'
+import OfflineStreamInfo from './OfflineStreamInfo'
 
-class OnlineStreams extends React.Component {
+class OfflineStreams extends React.Component {
   render() {
     return (
     	<div>
-      	<h1>OnlineStreams Is Here!</h1>
-    		  <ul>
+      	<h1>OfflineStreams Are Here!</h1>
+            <ul>
             {
               Object
-              .keys(this.props.channels)
-              .map(key => <StreamInfo 
-                key={key}
-                index={key}
-                details={this.props.channels[key]} />)
+              .keys(this.props.offlineChannels)
+              .map(key => 
+                <li>
+                  <OfflineStreamInfo
+                    key={key}
+                    index={key}
+                    details={this.props.offlineChannels[key]}
+                  />
+                </li>
+              )
             }
           </ul>
     	</div>
@@ -21,4 +26,4 @@ class OnlineStreams extends React.Component {
   }
 }
 
-export default OnlineStreams;
+export default OfflineStreams;

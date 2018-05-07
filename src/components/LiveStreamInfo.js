@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 
-class StreamInfo extends React.Component {
+class LiveStreamInfo extends React.Component {
   render() {
 
   	const {details} = this.props;
@@ -9,10 +9,9 @@ class StreamInfo extends React.Component {
   	startTime = moment(startTime, 'YYYY-MM-DDHH:mm:SS');
   	let now =  moment();
   	var duration = moment.duration(startTime.diff(now)).humanize();
-  	console.log(duration)
 
     return (
-    	<div>
+    	<div id={this.props.index}>
 	    	<ul>
 					<a href={details.channel.url}><li>{details.channel.display_name}</li></a>
 					<li>{details.game}</li>
@@ -25,4 +24,4 @@ class StreamInfo extends React.Component {
   }
 }
 
-export default StreamInfo;
+export default LiveStreamInfo;

@@ -17,23 +17,33 @@ class App extends Component {
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
+    this.streamsLookup();
+  }
+
+  streamsLookup() {
     let liveChannels = this.state.liveChannels;
+    let offlineChannels = this.state.offlineChannels;
     let streamPromises = []
     const clientId = process.env.REACT_APP_TWITCH_CLIENT_ID;
-    Object.keys(this.state.channels).map( i => 
+    Object.keys(channelList).map( i => 
       streamPromises.push(axios.get(this.state.channels[i].streamLink + clientId)) 
     )
-    axios.all(streamPromises).then((results) => {
+    axios.all(streamPromises)
+    .then((results) => {
       results.forEach((response) => {
         if (response.data.stream !== null) {
           liveChannels[response.data.stream.channel.name] = response.data.stream
+          this.setState({liveChannels: liveChannels});
         } else {
-          console.log('Offline!')
+          axios.get(response.data._links.channel + clientId)
+          .then((results) => {
+            offlineChannels[results.data.name] = results.data
+            this.setState({offlineChannels: offlineChannels});
+          })
         }
-      })
-      this.setState({liveChannels});
-    });
+      });
+    })
   }
 
   render() {
@@ -44,7 +54,7 @@ class App extends Component {
           <h1 className="App-title">Twitch Follower</h1>
         </header>
         <OnlineStreams liveChannels={this.state.liveChannels} />
-        {/*<OfflineStreams channels={this.state.channels} />*/}
+        <OfflineStreams offlineChannels={this.state.offlineChannels} />
       </div>
     );
   }

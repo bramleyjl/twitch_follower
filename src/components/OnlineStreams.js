@@ -1,5 +1,5 @@
 import React from 'react';
-import StreamInfo from './StreamInfo'
+import LiveStreamInfo from './LiveStreamInfo'
 
 class OnlineStreams extends React.Component {
   render() {
@@ -12,7 +12,7 @@ class OnlineStreams extends React.Component {
               .keys(this.props.liveChannels)
               .map(key => 
               	<li>
-              		<StreamInfo
+              		<LiveStreamInfo
                 		key={key}
                 		index={key}
                 		details={this.props.liveChannels[key]} 
