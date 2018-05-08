@@ -21,14 +21,13 @@ img:hover {
   -webkit-box-shadow: 0 10px 6px -6px #777;
   -moz-box-shadow: 0 10px 6px -6px #777;
   box-shadow: 0 10px 6px -6px #777;
-  transition: .2s;
 }
 
 img {
   margin: 10px 0px;
   max-width: 285px;
   max-height: 160px;
-  transition: .2s
+  transition: box-shadow .3s ease-in-out;
 }
 
 .App {
@@ -72,14 +71,21 @@ img {
   width: 21rem;
   background: rgba(255, 255, 255, .7);
   margin: 5px;
-  border-color: white;
-  border-style: solid;
-  transition: .4s;
+  transition: .4s ease-in-out;
 }
 
 .card-body {
   flex-flow: column;
   padding: 10px;
+}
+
+h6.card-img-overlay {
+  pointer-events:none;
+  text-shadow: 
+    -1px -1px 0 #fff,
+    1px -1px 0 #fff,
+    -1px 1px 0 #fff,
+    1px 1px 0 #fff;
 }
 
 .card-text {
