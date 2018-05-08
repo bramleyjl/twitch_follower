@@ -4,7 +4,7 @@ import OfflineStreamInfo from './OfflineStreamInfo'
 class OfflineStreams extends React.Component {
   render() {
     return (
-    	<div class="row justify-content-center offlineWrapper">
+    	<div className="row justify-content-center offlineWrapper">
             {
               Object
               .keys(this.props.offlineChannels)

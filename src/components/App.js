@@ -9,15 +9,32 @@ import channelList from '../channelList';
 class App extends Component {
   constructor() {
     super();
+    this.showAll = this.showAll.bind(this);
+    this.showLive = this.showLive.bind(this);
+    this.showOffline = this.showOffline.bind(this);
     this.state = {
       channels: channelList,
       liveChannels: {},
-      offlineChannels: {}
+      offlineChannels: {},
+      showLive: true,
+      showOffline: true,
     }
   }
 
   componentWillMount() {
     this.streamsLookup();
+  }
+
+  showAll() {
+    this.setState({showLive: true, showOffline: true})
+  }
+
+  showLive() {
+    this.setState({showLive: true, showOffline: false})
+  }
+
+  showOffline() {
+    this.setState({showLive: false, showOffline: true})
   }
 
   streamsLookup() {
@@ -48,19 +65,22 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <nav id="primary-nav" class="navbar navbar-default sticky-top">
-          <div class="navbar-nav navbar-left">
-            <h1 class="App-title">Twitch Follower</h1>
+        <nav id="primary-nav" className="navbar navbar-default sticky-top">
+          <div className="navbar-nav navbar-left">
+            <a href="https://github.com/bramleyjl/twitch_follower">
+              <h1 className="App-title" data-toggle="tooltip" data-placement="bottom" title="View on GitHub">
+              Twitch Follower</h1>
+            </a>
           </div>
-          <div class="navbar-nav navbar-right">
-              <h4 class="App-subtitle">All</h4>
-              <h4 class="App-subtitle">Live</h4>
-              <h4 class="App-subtitle">Offline</h4>
+          <div className="navbar-nav navbar-right">
+            <button className="App-subtitle" onClick={this.showAll}>All</button>
+            <button className="App-subtitle" onClick={this.showLive}>Live</button>
+            <button className="App-subtitle" onClick={this.showOffline}>Offline</button>
           </div>
         </nav>
-        <div class="container">
-          <OnlineStreams liveChannels={this.state.liveChannels} />
-          <OfflineStreams offlineChannels={this.state.offlineChannels} />
+        <div className="container">
+          { this.state.showLive ? <OnlineStreams liveChannels={this.state.liveChannels} /> : null }
+          { this.state.showOffline ? <OfflineStreams offlineChannels={this.state.offlineChannels} /> : null }
         </div>
       </div>
     );

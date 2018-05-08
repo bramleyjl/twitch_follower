@@ -1,12 +1,34 @@
 @font-face {
-    font-family: twitch-shadow;
-    src: url("https://cdn.rawgit.com/nawazishali/portfolio-version-two/05ba8748/fonts/dimitry.TTF");
+  font-family: twitch-shadow;
+  src: url("https://cdn.rawgit.com/nawazishali/portfolio-version-two/05ba8748/fonts/dimitry.TTF");
 }
 
 body {
   background-image: url('./twitch-logo.png');
   background-size: 8px 8px;
   background-repeat: repeat;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
+}
+
+img:hover {
+  -webkit-box-shadow: 0 10px 6px -6px #777;
+  -moz-box-shadow: 0 10px 6px -6px #777;
+  box-shadow: 0 10px 6px -6px #777;
+  transition: .2s;
+}
+
+img {
+  margin: 10px 0px;
+  max-width: 285px;
+  max-height: 160px;
+  transition: .2s
 }
 
 .App {
@@ -19,16 +41,68 @@ body {
   color: white;
 }
 
+.App-title:hover {
+  color: #9C57C4;
+  text-shadow: 
+    -1px -1px 0 #fff,
+    1px -1px 0 #fff,
+    -1px 1px 0 #fff,
+    1px 1px 0 #fff; 
+}
+
 .App-subtitle {
   font-family: twitch-shadow;
   color: white;
-  padding-right: 20px;
+  background-color: transparent;
+  margin-right: 20px;
+  border-style: solid;
+  border-color: white;
 }
 
+.App-subtitle:hover {
+  cursor: pointer;
+  color: #9C57C4;
+  background-color: white;
+  -webkit-box-shadow: 0 10px 6px -6px #777;
+  -moz-box-shadow: 0 10px 6px -6px #777;
+  box-shadow: 0 10px 6px -6px #777;
+}
+
+.card {
+  width: 21rem;
+  background: rgba(255, 255, 255, .7);
+  margin: 5px;
+  border-color: white;
+  border-style: solid;
+  transition: .4s;
+}
+
+.card-body {
+  flex-flow: column;
+  padding: 10px;
+}
+
+.card-text {
+  font-family: 'sans-serif';
+}
+
+.card:hover {
+  background: rgba(255, 255, 255, 1);
+  -webkit-box-shadow: 0 10px 6px -6px #777;
+  -moz-box-shadow: 0 10px 6px -6px #777;
+  box-shadow: 0 10px 6px -6px #777;
+  transition: .4s;
+}
 
 .live-stream {
   color: green;
   font-family: 'Press Start 2P';
+}
+
+.navbar-nav{
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
 }
 
 .offline-stream {
@@ -36,39 +110,7 @@ body {
   font-family: 'Press Start 2P';
 }
 
-.card {
-  width: 23rem;
-  background: rgba(255, 255, 255, .8);
-  margin: 5px;
-  border-color: black;
-  border-style: solid;  
-}
-
-.card-title {
-  margin: 10px;
-}
-
-.card:hover {
-  background: rgba(255, 255, 255, 1);
-}
-
-.img-fluid {
-  max-width: 320px;
-  max-height: 180px;
-}
-
-.status-title {
-  font-family: 'twitch-shadow';
-  color: white;  
-}
-
 #primary-nav {
   background: #9C57C4;
   margin-bottom: 10px;
-}
-
-.navbar-nav{
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
 }

@@ -1,5 +1,4 @@
 import React from 'react';
-import moment from 'moment';
 
 class OfflineStreamInfo extends React.Component {
   render() {
@@ -7,13 +6,13 @@ class OfflineStreamInfo extends React.Component {
     const {details} = this.props;
 
     return (
-      <div class="card" id={this.props.index}>
-        <div class="card-body">
+      <div className="card hoverable" id={this.props.index}>
           <a href={details.url}>
-            <img src={details.video_banner} class="mx-auto rounded img-fluid" alt={this.props.index} />
+            <img src={details.video_banner} className="img-fluid mx-auto rounded" alt={this.props.index} />
+            <h5 className="card-title offline-stream">{details.display_name}</h5>
           </a>
-          <h5 class="card-title offline-stream">{details.display_name}</h5>
-          <p class="card-text">{details.status}</p>
+        <div className="card-body d-flex align-items-center justify-content-center">
+          <p className="card-text">{details.status}</p>
         </div>
       </div>
     )
