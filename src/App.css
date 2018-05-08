@@ -18,9 +18,9 @@ a:active {
 }
 
 img:hover {
-  -webkit-box-shadow: 0 10px 6px -6px #777;
-  -moz-box-shadow: 0 10px 6px -6px #777;
-  box-shadow: 0 10px 6px -6px #777;
+  -webkit-box-shadow: 0 11px 7px -7px #777;
+  -moz-box-shadow: 0 11px 7px -7px #777;
+  box-shadow: 0 11px 7px -7px #777;
 }
 
 img {
@@ -56,20 +56,18 @@ img {
   margin-right: 20px;
   border-style: solid;
   border-color: white;
+  border-radius: 5px;
 }
 
 .App-subtitle:hover {
   cursor: pointer;
   color: #9C57C4;
   background-color: white;
-  -webkit-box-shadow: 0 10px 6px -6px #777;
-  -moz-box-shadow: 0 10px 6px -6px #777;
-  box-shadow: 0 10px 6px -6px #777;
 }
 
 .card {
   width: 21rem;
-  background: rgba(255, 255, 255, .7);
+  background: rgba(255, 255, 255, .8);
   margin: 5px;
   transition: .4s ease-in-out;
 }
@@ -89,14 +87,15 @@ h6.card-img-overlay {
 }
 
 .card-text {
-  font-family: 'sans-serif';
+  font-family: 'Source Code Pro', monospace;
 }
 
 .card:hover {
   background: rgba(255, 255, 255, 1);
-  -webkit-box-shadow: 0 10px 6px -6px #777;
-  -moz-box-shadow: 0 10px 6px -6px #777;
-  box-shadow: 0 10px 6px -6px #777;
+  -webkit-box-shadow: 0 11px 7px -7px #777;
+  -moz-box-shadow: 0 11px 7px -7px #777;
+  box-shadow: 0 11px 7px -7px #777;
+  border: 2px #9C57C4 solid;
   transition: .4s;
 }
 
