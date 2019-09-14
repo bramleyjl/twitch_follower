@@ -1,34 +1,26 @@
 module.exports = {
   channel1: {
-    name: 'magic',
-    streamLink: 'https://api.twitch.tv/kraken/streams/magic'
+    name: 'magic'
   },
   channel2: {
-    name: 'calebdmtg',
-    streamLink: 'https://api.twitch.tv/kraken/streams/calebdmtg'
+    name: 'calebdmtg'
   },
   channel3: {
-    name: 'nightblue3',
-    streamLink: 'https://api.twitch.tv/kraken/streams/nightblue3'
+    name: 'nightblue3'
   },
   channel4: {
-    name: 'riotgames',
-    streamLink: 'https://api.twitch.tv/kraken/streams/riotgames'
+    name: 'riotgames'
   },
   channel5: {
-    name: 'backtowarcraft',
-    streamLink: 'https://api.twitch.tv/kraken/streams/back2warcraft'
+    name: 'backtowarcraft'
   },
   channel6: {
-    name: 'followgrubby',
-    streamLink: 'https://api.twitch.tv/kraken/streams/followgrubby'
+    name: 'followgrubby'
   },
   channel7: {
-    name: 'tsm_theoddone',
-    streamLink: 'https://api.twitch.tv/kraken/streams/tsm_theoddone'
+    name: 'tsm_theoddone'
   },
   channel8: {
-    name: 'wedge',
-    streamLink: 'https://api.twitch.tv/kraken/streams/wedge'
+    name: 'wedge'
   }
 }

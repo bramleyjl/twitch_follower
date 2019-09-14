@@ -40,10 +40,13 @@ class App extends Component {
   streamsLookup() {
     let liveChannels = this.state.liveChannels;
     let offlineChannels = this.state.offlineChannels;
-    let streamPromises = []
-    const clientId = process.env.REACT_APP_TWITCH_CLIENT_ID;
-    Object.keys(channelList).map( i => 
-      streamPromises.push(axios.get(this.state.channels[i].streamLink + clientId)) 
+    let streamPromises = [];
+    const kraken = axios.create({
+      baseURL: 'https://api.twitch.tv/kraken/',
+      headers: {'Client-ID': process.env.REACT_APP_TWITCH_CLIENT_ID}
+    });
+    Object.values(channelList).map( channel => 
+      streamPromises.push(kraken.get('https://api.twitch.tv/kraken/users?login='+ channel.name))
     )
     axios.all(streamPromises)
     .then((results) => {
@@ -52,7 +55,7 @@ class App extends Component {
           liveChannels[response.data.stream.channel.name] = response.data.stream
           this.setState({liveChannels: liveChannels});
         } else {
-          axios.get(response.data._links.channel + clientId)
+          kraken.get(response.data._links.channel)
           .then((results) => {
             offlineChannels[results.data.name] = results.data
             this.setState({offlineChannels: offlineChannels});
