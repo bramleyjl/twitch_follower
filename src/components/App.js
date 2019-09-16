@@ -43,10 +43,13 @@ class App extends Component {
     let streamPromises = [];
     const kraken = axios.create({
       baseURL: 'https://api.twitch.tv/kraken/',
-      headers: {'Client-ID': process.env.REACT_APP_TWITCH_CLIENT_ID}
+      headers: {
+        'Client-ID': process.env.REACT_APP_TWITCH_CLIENT_ID,
+        'Accept': 'application/vnd.twitchtv.v5+json'
+      }
     });
     Object.values(channelList).map( channel => 
-      streamPromises.push(kraken.get('https://api.twitch.tv/kraken/users?login='+ channel.name))
+      streamPromises.push(kraken.get('https://api.twitch.tv/kraken/streams/' + channel.id + '?client_id=' + process.env.REACT_APP_TWITCH_CLIENT_ID))
     )
     axios.all(streamPromises)
     .then((results) => {
@@ -55,7 +58,9 @@ class App extends Component {
           liveChannels[response.data.stream.channel.name] = response.data.stream
           this.setState({liveChannels: liveChannels});
         } else {
-          kraken.get(response.data._links.channel)
+          var idRegExp = /(?<=streams\/)\d+/;
+          var channelId = idRegExp.exec(response.request.responseURL)[0];
+          kraken.get('https://api.twitch.tv/kraken/channels/' + channelId + '?client_id=' + process.env.REACT_APP_TWITCH_CLIENT_ID)
           .then((results) => {
             offlineChannels[results.data.name] = results.data
             this.setState({offlineChannels: offlineChannels});
