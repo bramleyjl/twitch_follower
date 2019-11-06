@@ -7,7 +7,7 @@ class OfflineStreamInfo extends React.Component {
 
     return (
       <div className="card" id={this.props.index}>
-        <a href={details.url}>
+        <a href={details.url + '/videos'}>
           <img src={details.video_banner} className="img-fluid mx-auto rounded" alt={this.props.index} />
           <h6 className="card-img-overlay offline-stream">Offline</h6>          
           <h5 className="card-title offline-stream">{details.display_name}</h5>

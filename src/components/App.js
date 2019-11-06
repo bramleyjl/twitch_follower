@@ -48,7 +48,7 @@ class App extends Component {
         'Accept': 'application/vnd.twitchtv.v5+json'
       }
     });
-    Object.values(channelList).map( channel => 
+    Object.values(channelList).map(channel =>
       streamPromises.push(kraken.get('https://api.twitch.tv/kraken/streams/' + channel.id + '?client_id=' + process.env.REACT_APP_TWITCH_CLIENT_ID))
     )
     axios.all(streamPromises)
