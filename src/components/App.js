@@ -48,11 +48,11 @@ class App extends Component {
       }
     });
 
-    kraken.get('https://api.twitch.tv/kraken/users/' + process.env.REACT_APP_USER_ID + '/follows/channels?sortby=last_broadcast&limit=100')
+    kraken.get('users/' + process.env.REACT_APP_USER_ID + '/follows/channels?sortby=last_broadcast&limit=100')
     .then((results) => {
       results.data.follows.forEach((response) => {
         channelList[response.channel._id] = response.channel;
-        streamPromises.push(kraken.get('https://api.twitch.tv/kraken/streams/' + response.channel._id));
+        streamPromises.push(kraken.get('streams/' + response.channel._id));
       });
       return axios.all(streamPromises);
     })
