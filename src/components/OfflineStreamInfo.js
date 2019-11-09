@@ -1,9 +1,13 @@
 import React from 'react';
+import logo from '../images/twitch-background.jpg';
 
 class OfflineStreamInfo extends React.Component {
   render() {
 
     const {details} = this.props;
+    if (details.video_banner === null) {
+      details.video_banner = logo;
+    }
 
     return (
       <div className="card" id={this.props.index}>

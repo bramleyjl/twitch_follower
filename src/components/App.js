@@ -14,6 +14,7 @@ class App extends Component {
     this.showOffline = this.showOffline.bind(this);
     this.state = {
       userName: '',
+      userLookup: '',
       liveChannels: {},
       offlineChannels: {},
       showLive: true,
@@ -22,15 +23,6 @@ class App extends Component {
 
     this.onFormSubmit = this.onFormSubmit.bind(this)
     this.onTextChange = this.onTextChange.bind(this)
-  }
-
-  onFormSubmit(e) {
-    e.preventDefault()
-    console.log(`You typed: ${this.state.user}`)
-  }
-
-  onTextChange(e) {
-    this.setState({user: e.target.value})
   }
 
   componentWillMount() {
@@ -49,11 +41,7 @@ class App extends Component {
     this.setState({showLive: false, showOffline: true})
   }
 
-  streamsLookup(userId) {
-    let liveChannels = this.state.liveChannels;
-    let offlineChannels = this.state.offlineChannels;
-    let channelList = {};
-    let streamPromises = [];
+  getKraken() {
     const kraken = axios.create({
       baseURL: 'https://api.twitch.tv/kraken/',
       headers: {
@@ -61,11 +49,22 @@ class App extends Component {
         'Accept': 'application/vnd.twitchtv.v5+json'
       }
     });
+    return kraken;    
+  }
+
+  streamsLookup(userId) {
+    let liveChannels = {};
+    let offlineChannels = {};
+    let channelList = {};
+    let streamPromises = [];
+    let kraken = this.getKraken();
 
     kraken.get('users/' + userId)
     .then((results) => {
+      let name = results.data.display_name ? results.data.display_name : results.data.name;
       this.setState({
-        userName: results.data.display_name ? results.data.display_name : results.data.name
+        userName: name,
+        userDisplay: 'User: ' + name 
       });
     })
     kraken.get('users/' + userId + '/follows/channels?sortby=last_broadcast&limit=100')
@@ -94,6 +93,25 @@ class App extends Component {
     });
   }
 
+  onFormSubmit(e) {
+    e.preventDefault()
+    let kraken = this.getKraken();
+    kraken.get('users?login=' + this.state.userLookup)
+    .then((results) => {
+      if (results.data.users.length !== 0) {
+        this.streamsLookup(results.data.users[0]._id);
+      } else {
+        this.setState({
+          userDisplay: 'User ' + this.state.userLookup + ' not found.'
+        });
+      }
+    });
+  }
+
+  onTextChange(e) {
+    this.setState({userLookup: e.target.value})
+  }
+
   render() {
     return (
       <div className="App">
@@ -105,10 +123,13 @@ class App extends Component {
             </a>
           </div>
 
+        <div className="navbar-nav">
           <form onSubmit={this.onFormSubmit}>
+            <span className="user-select">{this.state.userDisplay}</span>
             <UserLookup user={this.state.userName} onTextChange={this.onTextChange} />
-            <button type='submit'>Submit</button>
+            <button type='submit'>Find User</button>
           </form>
+        </div>
 
         <div className="navbar-nav navbar-right">
             <button className={(this.state.showLive && this.state.showOffline) ? "App-subtitle-selected" : "App-subtitle"} onClick={this.showAll}>All</button>
