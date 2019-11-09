@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../App.css';
 import axios from 'axios';
 
+import UserLookup from './UserLookup';
 import OnlineStreams from './OnlineStreams';
 import OfflineStreams from './OfflineStreams';
 
@@ -12,15 +13,28 @@ class App extends Component {
     this.showLive = this.showLive.bind(this);
     this.showOffline = this.showOffline.bind(this);
     this.state = {
+      userName: '',
       liveChannels: {},
       offlineChannels: {},
       showLive: true,
       showOffline: true,
     }
+
+    this.onFormSubmit = this.onFormSubmit.bind(this)
+    this.onTextChange = this.onTextChange.bind(this)
+  }
+
+  onFormSubmit(e) {
+    e.preventDefault()
+    console.log(`You typed: ${this.state.user}`)
+  }
+
+  onTextChange(e) {
+    this.setState({user: e.target.value})
   }
 
   componentWillMount() {
-    this.streamsLookup();
+    this.streamsLookup(process.env.REACT_APP_USER_ID);
   }
 
   showAll() {
@@ -35,7 +49,7 @@ class App extends Component {
     this.setState({showLive: false, showOffline: true})
   }
 
-  streamsLookup() {
+  streamsLookup(userId) {
     let liveChannels = this.state.liveChannels;
     let offlineChannels = this.state.offlineChannels;
     let channelList = {};
@@ -48,7 +62,13 @@ class App extends Component {
       }
     });
 
-    kraken.get('users/' + process.env.REACT_APP_USER_ID + '/follows/channels?sortby=last_broadcast&limit=100')
+    kraken.get('users/' + userId)
+    .then((results) => {
+      this.setState({
+        userName: results.data.display_name ? results.data.display_name : results.data.name
+      });
+    })
+    kraken.get('users/' + userId + '/follows/channels?sortby=last_broadcast&limit=100')
     .then((results) => {
       results.data.follows.forEach((response) => {
         channelList[response.channel._id] = response.channel;
@@ -84,7 +104,13 @@ class App extends Component {
               Twitch Follower</h1>
             </a>
           </div>
-          <div className="navbar-nav navbar-right">
+
+          <form onSubmit={this.onFormSubmit}>
+            <UserLookup user={this.state.userName} onTextChange={this.onTextChange} />
+            <button type='submit'>Submit</button>
+          </form>
+
+        <div className="navbar-nav navbar-right">
             <button className={(this.state.showLive && this.state.showOffline) ? "App-subtitle-selected" : "App-subtitle"} onClick={this.showAll}>All</button>
             <button className={(this.state.showLive && !this.state.showOffline) ? "App-subtitle-selected" : "App-subtitle"} onClick={this.showLive}>Live</button>
             <button className={(!this.state.showLive && this.state.showOffline) ? "App-subtitle-selected" : "App-subtitle"} onClick={this.showOffline}>Offline</button>

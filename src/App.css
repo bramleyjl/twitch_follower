@@ -125,6 +125,13 @@ h6.card-img-overlay {
   font-family: 'Press Start 2P';
 }
 
+.user-select {
+  font-family: twitch-shadow;
+  color: white;
+  background-color: transparent;
+  margin-right: 20px;
+}
+
 #primary-nav {
   background: #9C57C4;
   margin-bottom: 10px;
