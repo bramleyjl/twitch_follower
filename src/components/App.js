@@ -85,9 +85,9 @@ class App extends Component {
             </a>
           </div>
           <div className="navbar-nav navbar-right">
-            <button className="App-subtitle" onClick={this.showAll}>All</button>
-            <button className="App-subtitle" onClick={this.showLive}>Live</button>
-            <button className="App-subtitle" onClick={this.showOffline}>Offline</button>
+            <button className={(this.state.showLive && this.state.showOffline) ? "App-subtitle-selected" : "App-subtitle"} onClick={this.showAll}>All</button>
+            <button className={(this.state.showLive && !this.state.showOffline) ? "App-subtitle-selected" : "App-subtitle"} onClick={this.showLive}>Live</button>
+            <button className={(!this.state.showLive && this.state.showOffline) ? "App-subtitle-selected" : "App-subtitle"} onClick={this.showOffline}>Offline</button>
           </div>
         </nav>
         <div className="container">
