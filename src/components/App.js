@@ -67,6 +67,9 @@ class App extends Component {
         userDisplay: 'User: ' + name 
       });
     })
+    .catch(function (error) {
+      console.log(error);
+    });
     kraken.get('users/' + userId + '/follows/channels?sortby=last_broadcast&limit=100')
     .then((results) => {
       results.data.follows.forEach((response) => {
@@ -90,7 +93,10 @@ class App extends Component {
         liveChannels: liveChannels,
         offlineChannels: offlineChannels
       });
-    });
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
   }
 
   onFormSubmit(e) {
@@ -119,7 +125,8 @@ class App extends Component {
           <div className="navbar-nav navbar-left">
             <a href="https://github.com/bramleyjl/twitch_follower">
               <h1 className="App-title" data-toggle="tooltip" data-placement="bottom" title="View on GitHub">
-              Twitch Follower</h1>
+                Twitch Follower
+              </h1>
             </a>
           </div>
 
