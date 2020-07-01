@@ -83,8 +83,9 @@ class App extends Component {
         if (response.data.stream !== null) {
           liveChannels[response.data.stream.channel.name] = response.data.stream
         } else {
-          var idRegExp = /(?<=streams\/)\d+/;
+          var idRegExp = /streams\/\d+/;
           var channelId = idRegExp.exec(response.request.responseURL)[0];
+          channelId = channelId.substr(8);
           let channel = channelList[channelId];
           offlineChannels[channel.name] = channel;
         }
