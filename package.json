@@ -4,7 +4,7 @@
   "private": true,
   "homepage": ".",
   "dependencies": {
-    "axios": "^0.21.0",
+    "axios": "^0.21.1",
     "bootstrap": "^4.3.1",
     "jquery": "^3.5.1",
     "popper.js": "^1.16.0",
